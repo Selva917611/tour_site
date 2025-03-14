@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Incredible India - Tourist Destinations</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --primary-color: #FF9933;
+            --secondary-color: #138808;
+            --accent-color: #000080;
+            --text-color: #333333;
+            --light-gray: #f5f5f5;
+            --dark-gray: #666666;
+            --white: #ffffff;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        button {
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        section {
+            padding: 5rem 0;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        h2:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background: var(--primary-color);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary-color);
+        }
+
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            bottom: -5px;
+            left: 0;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover:after,
+        .nav-links a.active:after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            height: 3px;
+            width: 100%;
+            background-color: var(--text-color);
+            border-radius: 10px;
+            transition: var(--transition);
+        }
+
+        .hero {
+            height: 70vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/api/placeholder/1350/800') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 1rem;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 0.8rem 2rem;
+            font-size: 1rem;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .cta-button:hover {
+            background-color: #e78b2c;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .destinations {
+            background-color: var(--light-gray);
+            padding: 5rem 1rem;
+        }
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .filter-btn {
+            background-color: var(--white);
+            border: 1px solid var(--dark-gray);
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            transition: var(--transition);
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border-color: var(--primary-color);
+        }
+
+        .destination-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .taj-mahal {
+            background-image: url('/api/placeholder/600/400');
+        }
+
+        .goa {
+            background-image: url('/api/placeholder/600/400');
+        }
+
+        .ladakh {
+            background-image: url('/api/placeholder/600/400');
+        }
+
+        .varanasi {
+            background-image: url('/api/placeholder/600/400');
+        }
+
+        .jaipur {
+            background-image: url('/api/placeholder/600/400');
+        }
+
+        .darjeeling {
+            background-image: url('/api/placeholder/600/400');
+        }
+
+        .andaman {
+            background-image: url('/api/placeholder/600/400');
+        }
+
+        .rishikesh {
+            background-image: url('/api/placeholder/600/400');
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card-content h3 {
+            margin-bottom: 0.5rem;
+            color: var(--accent-color);
+        }
+
+        .card-content p {
+            margin-bottom: 1rem;
+            color: var(--dark-gray);
+        }
+
+        .card-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .location {
+            color: var(--dark-gray);
+            font-size: 0.9rem;
+        }
+
+        .view-details {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .view-details:hover {
+            background-color: #0c7209;
+        }
+
+        .about {
+            padding: 5rem 1rem;
+        }
+
+        .about-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .facts-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .fact {
+            background-color: var(--light-gray);
+            padding: 1.5rem;
+            text-align: center;
+            border-radius: 10px;
+            transition: var(--transition);
+        }
+
+        .fact:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+            transform: translateY(-5px);
+        }
+
+        .fact h3 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent-color);
+        }
+
+        .fact:hover h3 {
+            color: var(--white);
+        }
+
+        .contact {
+            background-color: var(--light-gray);
+            padding: 5rem 1rem;
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .form-group {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid var(--dark-gray);
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 1rem;
+            outline: none;
+            transition: var(--transition);
+            background-color: var(--white);
+        }
+
+        .form-group label {
+            position: absolute;
+            top: 0.8rem;
+            left: 0.8rem;
+            color: var(--dark-gray);
+            pointer-events: none;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary-color);
+        }
+
+        .form-group input:focus ~ label,
+        .form-group textarea:focus ~ label,
+        .form-group input:valid ~ label,
+        .form-group textarea:valid ~ label {
+            top: -0.7rem;
+            left: 0.5rem;
+            font-size: 0.75rem;
+            padding: 0 0.3rem;
+            background-color: var(--white);
+            color: var(--primary-color);
+        }
+
+        .form-group textarea {
+            height: 150px;
+            resize: none;
+        }
+
+        .submit-button {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 0.8rem 2rem;
+            font-size: 1rem;
+            border-radius: 5px;
+            width: 100%;
+            transition: var(--transition);
+        }
+
+        .submit-button:hover {
+            background-color: #e78b2c;
+        }
+
+        .contact-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .info-box {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .info-box h3 {
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        .contact-details {
+            margin-top: 1.5rem;
+        }
+
+        .contact-details p {
+            margin-bottom: 0.5rem;
+        }
+
+        footer {
+            background-color: var(--accent-color);
+            color: var(--white);
+            padding: 3rem 1rem 0;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-logo h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links h4 {
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .footer-links h4:after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 2px;
+            background: var(--primary-color);
+            bottom: -5px;
+            left: 0;
+        }
+
+        .footer-links ul {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .footer-links a {
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+            margin-left: 5px;
+        }
+
+        .footer-newsletter p {
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 5px 0 0 5px;
+            outline: none;
+        }
+
+        .newsletter-form button {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 0 1rem;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 1.5rem 0;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        @media screen and (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                flex-direction: column;
+                background-color: var(--white);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+                padding: 2rem 0;
+                gap: 1.5rem;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-content,
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1100;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: var(--white);
+            width: 90%;
+            max-width: 800px;
+            border-radius: 10px;
+            position: relative;
+            padding: 2rem;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--dark-gray);
+        }
+
+        .modal-image {
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .modal-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .info-item {
+            background-color: var(--light-gray);
+            padding: 1rem;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Incredible India</div>
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#destinations">Destinations</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Discover the Magic of India</h1>
+            <p>Explore the diverse landscapes, rich culture, and ancient heritage</p>
+            <button class="cta-button">Plan Your Journey</button>
+        </div>
+    </section>
+
+    <section id="destinations" class="destinations">
+        <h2>Popular Destinations</h2>
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="historical">Historical</button>
+            <button class="filter-btn" data-filter="beaches">Beaches</button>
+            <button class="filter-btn" data-filter="mountains">Mountains</button>
+            <button class="filter-btn" data-filter="spiritual">Spiritual</button>
+        </div>
+        
+        <div class="destination-cards">
+            <div class="card" data-category="historical">
+                <div class="card-image taj-mahal"></div>
+                <div class="card-content">
+                    <h3>Taj Mahal, Agra</h3>
+                    <p>A magnificent marble mausoleum built by Emperor Shah Jahan in memory of his wife.</p>
+                    <div class="card-details">
+                        <span class="location">Uttar Pradesh</span>
+                        <button class="view-details">Details</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card" data-category="beaches">
+                <div class="card-image goa"></div>
+                <div class="card-content">
+                    <h3>Beaches of Goa</h3>
+                    <p>Golden sandy beaches, vibrant nightlife, and a unique blend of Indian and Portuguese cultures.</p>
+                    <div class="card-details">
+                        <span class="location">Goa</span>
+                        <button class="view-details">Details</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card" data-category="mountains">
+                <div class="card-image ladakh"></div>
+                <div class="card-content">
+                    <h3>Leh-Ladakh</h3>
+                    <p>Breathtaking landscapes with high passes, pristine lakes, and ancient monasteries.</p>
+                    <div class="card-details">
+                        <span class="location">Ladakh</span>
+                        <button class="view-details">Details</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card" data-category="spiritual">
+                <div class="card-image varanasi"></div>
+                <div class="card-content">
+                    <h3>Varanasi</h3>
+                    <p>One of the world's oldest continuously inhabited cities and a major spiritual center.</p>
+                    <div class="card-details">
+                        <span class="location">Uttar Pradesh</span>
+                        <button class="view-details">Details</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <h2>About India</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>India, a land of extraordinary diversity, offers an unparalleled travel experience. From the snow-capped Himalayas in the north to the tropical beaches in the south, from ancient temples to modern metropolises, India has something for every traveler.</p>
+                <p>With its rich history spanning thousands of years, diverse cultural heritage, delicious cuisine, and warm hospitality, India continues to enchant visitors from around the world.</p>
+            </div>
+            <div class="facts-container">
+                <div class="fact">
+                    <h3>29</h3>
+                    <p>States</p>
+                </div>
+                <div class="fact">
+                    <h3>22+</h3>
+                    <p>Official Languages</p>
+                </div>
+                <div class="fact">
+                    <h3>40+</h3>
+                    <p>UNESCO Sites</p>
+                </div>
+                <div class="fact">
+                    <h3>7,500+</h3>
+                    <p>Km of Coastline</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2>Plan Your Trip</h2>
+        <div class="contact-container">
+            <form id="contact-form">
+                <div class="form-group">
+                    <input type="text" id="name" required>
+                    <label for="name">Your Name</label>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="email" required>
+                    <label for="email">Your Email</label>
+                </div>
+                <div class="form-group">
+                    <select id="destination" required>
+                        <option value="" disabled selected>Select Destination</option>
+                        <option value="North India">North India</option>
+                        <option value="South India">South India</option>
+                        <option value="East India">East India</option>
+                        <option value="West India">West India</option>
+                        <option value="Central India">Central India</option>
+                        <option value="Northeast India">Northeast India</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <textarea id="message" required></textarea>
+                    <label for="message">Your Message</label>
+                </div>
+                <button type="submit" class="submit-button">Submit</button>
+            </form>
+            <div class="contact-info">
+                <div class="info-box">
+                    <h3>Need More Information?</h3>
+                    <p>Our travel experts are ready to help you plan the perfect Indian adventure tailored to your preferences.</p>
+                    <div class="contact-details">
+                        <p><strong>Email:</strong> info@incredibleindia.com</p>
+                        <p><strong>Phone:</strong> +91 1234567890</p>
+                        <p><strong>Address:</strong> Ministry of Tourism, Transport Bhawan, New Delhi, India</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <h3>Incredible India</h3>
+                <p>Discover the wonders of India</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#destinations">Destinations</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Popular Destinations</h4>
+                <ul>
+                    <li><a href="#">Taj Mahal</a></li>
+                    <li><a href="#">Kerala Backwaters</a></li>
+                    <li><a href="#">Varanasi</a></li>
+                    <li><a href="#">Rajasthan</a></li>
+                </ul>
+            </div>
+            <div class="footer-newsletter">
+                <h4>Newsletter</h4>
+                <p>Subscribe for travel tips and exclusive offers</p>
+                <div class="newsletter-form">
+                    <input type="email" placeholder="Your Email">
+                    <button>Subscribe</button>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Incredible India. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Navigation Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+        
+        // Filter Destinations
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const destinationCards = document.querySelectorAll('.card');
+        
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterBtns.forEach(btn => btn.classList.remove('active'));
+                
+                // Add active class to clicked button
+                btn.classList.add('active');
+                
+                const filter = btn.getAttribute('data-filter');
+                
+                destinationCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
