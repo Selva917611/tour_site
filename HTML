@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Incredible India - Tourist Destinations</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Incredible India</div>
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#destinations">Destinations</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Discover the Magic of India</h1>
+            <p>Explore the diverse landscapes, rich culture, and ancient heritage</p>
+            <button class="cta-button">Plan Your Journey</button>
+        </div>
+    </section>
+
+    <section id="destinations" class="destinations">
+        <h2>Popular Destinations</h2>
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="historical">Historical</button>
+            <button class="filter-btn" data-filter="beaches">Beaches</button>
+            <button class="filter-btn" data-filter="mountains">Mountains</button>
+            <button class="filter-btn" data-filter="spiritual">Spiritual</button>
+        </div>
+        
+        <div class="destination-cards">
+            <div class="card" data-category="historical">
+                <div class="card-image taj-mahal"></div>
+                <div class="card-content">
+                    <h3>Taj Mahal, Agra</h3>
+                    <p>A magnificent marble mausoleum built by Emperor Shah Jahan in memory of his wife.</p>
+                    <div class="card-details">
+                        <span class="location">Uttar Pradesh</span>
+                        <button class="view-details">Details</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card" data-category="beaches">
+                <div class="card-image goa"></div>
+                <div class="card-content">
+                    <h3>Beaches of Goa</h3>
+                    <p>Golden sandy beaches, vibrant nightlife, and a unique blend of Indian and Portuguese cultures.</p>
+                    <div class="card-details">
+                        <span class="location">Goa</span>
+                        <button class="view-details">Details</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card" data-category="mountains">
+                <div class="card-image ladakh"></div>
+                <div class="card-content">
+                    <h3>Leh-Ladakh</h3>
+                    <p>Breathtaking landscapes with high passes, pristine lakes, and ancient monasteries.</p>
+                    <div class="card-details">
+                        <span class="location">Ladakh</span>
+                        <button class="view-details">Details</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card" data-category="spiritual">
+                <div class="card-image varanasi"></div>
+                <div class="card-content">
+                    <h3>Varanasi</h3>
+                    <p>One of the world's oldest continuously inhabited cities and a major spiritual center.</p>
+                    <div class="card-details">
+                        <span class="location">Uttar Pradesh</span>
+                        <button class="view-details">Details</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card" data-category="historical">
+                <div class="card-image jaipur"></div>
+                <div class="card-content">
+                    <h3>Jaipur</h3>
+                    <p>The "Pink City" known for its stunning palaces, forts, and vibrant bazaars.</p>
+                    <div class="card-details">
+                        <span class="location">Rajasthan</span>
+                        <button class="view-details">Details</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card" data-category="mountains">
+                <div class="card-image darjeeling"></div>
+                <div class="card-content">
+                    <h3>Darjeeling</h3>
+                    <p>Famous for its tea plantations, panoramic Himalayan views, and the Darjeeling Himalayan Railway.</p>
+                    <div class="card-details">
+                        <span class="location">West Bengal</span>
+                        <button class="view-details">Details</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card" data-category="beaches">
+                <div class="card-image andaman"></div>
+                <div class="card-content">
+                    <h3>Andaman Islands</h3>
+                    <p>Crystal clear waters, coral reefs, and pristine beaches perfect for water sports.</p>
+                    <div class="card-details">
+                        <span class="location">Andaman & Nicobar</span>
+                        <button class="view-details">Details</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card" data-category="spiritual">
+                <div class="card-image rishikesh"></div>
+                <div class="card-content">
+                    <h3>Rishikesh</h3>
+                    <p>The "Yoga Capital of the World" situated on the banks of the sacred Ganges River.</p>
+                    <div class="card-details">
+                        <span class="location">Uttarakhand</span>
+                        <button class="view-details">Details</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-details">
+                <h2 id="modal-title"></h2>
+                <div id="modal-image" class="modal-image"></div>
+                <p id="modal-description"></p>
+                <div class="modal-info">
+                    <div class="info-item">
+                        <strong>Best Time to Visit:</strong>
+                        <span id="modal-best-time"></span>
+                    </div>
+                    <div class="info-item">
+                        <strong>Famous For:</strong>
+                        <span id="modal-famous-for"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section id="about" class="about">
+        <h2>About India</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>India, a land of extraordinary diversity, offers an unparalleled travel experience. From the snow-capped Himalayas in the north to the tropical beaches in the south, from ancient temples to modern metropolises, India has something for every traveler.</p>
+                <p>With its rich history spanning thousands of years, diverse cultural heritage, delicious cuisine, and warm hospitality, India continues to enchant visitors from around the world.</p>
+            </div>
+            <div class="facts-container">
+                <div class="fact">
+                    <h3>29</h3>
+                    <p>States</p>
+                </div>
+                <div class="fact">
+                    <h3>22+</h3>
+                    <p>Official Languages</p>
+                </div>
+                <div class="fact">
+                    <h3>40+</h3>
+                    <p>UNESCO Sites</p>
+                </div>
+                <div class="fact">
+                    <h3>7,500+</h3>
+                    <p>Km of Coastline</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2>Plan Your Trip</h2>
+        <div class="contact-container">
+            <form id="contact-form">
+                <div class="form-group">
+                    <input type="text" id="name" required>
+                    <label for="name">Your Name</label>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="email" required>
+                    <label for="email">Your Email</label>
+                </div>
+                <div class="form-group">
+                    <select id="destination" required>
+                        <option value="" disabled selected>Select Destination</option>
+                        <option value="North India">North India</option>
+                        <option value="South India">South India</option>
+                        <option value="East India">East India</option>
+                        <option value="West India">West India</option>
+                        <option value="Central India">Central India</option>
+                        <option value="Northeast India">Northeast India</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <textarea id="message" required></textarea>
+                    <label for="message">Your Message</label>
+                </div>
+                <button type="submit" class="submit-button">Submit</button>
+            </form>
+            <div class="contact-info">
+                <div class="info-box">
+                    <h3>Need More Information?</h3>
+                    <p>Our travel experts are ready to help you plan the perfect Indian adventure tailored to your preferences.</p>
+                    <div class="contact-details">
+                        <p><strong>Email:</strong> info@incredibleindia.com</p>
+                        <p><strong>Phone:</strong> +91 1234567890</p>
+                        <p><strong>Address:</strong> Ministry of Tourism, Transport Bhawan, New Delhi, India</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <h3>Incredible India</h3>
+                <p>Discover the wonders of India</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#destinations">Destinations</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Popular Destinations</h4>
+                <ul>
+                    <li><a href="#">Taj Mahal</a></li>
+                    <li><a href="#">Kerala Backwaters</a></li>
+                    <li><a href="#">Varanasi</a></li>
+                    <li><a href="#">Rajasthan</a></li>
+                </ul>
+            </div>
+            <div class="footer-newsletter">
+                <h4>Newsletter</h4>
+                <p>Subscribe for travel tips and exclusive offers</p>
+                <div class="newsletter-form">
+                    <input type="email" placeholder="Your Email">
+                    <button>Subscribe</button>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Incredible India. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Navigation Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+        
+        // Filter Destinations
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const destinationCards = document.querySelectorAll('.card');
+        
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterBtns.forEach(btn => btn.classList.remove('active'));
+                
+                // Add active class to clicked button
+                btn.classList.add('active');
+                
+                const filter = btn.getAttribute('data-filter');
+                
+                destinationCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Modal Functionality
+        const modal = document.querySelector('.modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalImage = document.getElementById('modal-image');
+        const modalDesc = document.getElementById('modal-description');
+        const modalBestTime = document.getElementById('modal-best-time');
+        const modalFamousFor = document.getElementById('modal-famous-for');
+        const closeModal = document.querySelector('.close-modal');
+        const detailBtns = document.querySelectorAll('.view-details');
+        
+        // Destination details
+        const destinationDetails = {
+            "Taj Mahal, Agra": {
+                description: "The Taj Mahal is an ivory-white marble mausoleum on the southern bank of the river Yamuna in the Indian city of Agra. It was commissioned in 1632 by the Mughal emperor Shah Jahan to house the tomb of his favorite wife, Mumtaz Mahal.",
+                bestTime: "October to March",
+                famousFor: "Architecture, Marble craftsmanship, Love story",
+                imageClass: "taj-mahal"
+            },
+            "Beaches of Goa": {
+                description: "Goa features a 125km coastline dotted with beautiful beaches. From the bustling Baga and Calangute to the serene Palolem and Agonda, Goa's beaches offer everything from water sports and beachside clubs to peaceful retreats.",
+                bestTime: "November to February",
+                famousFor: "Beaches, Nightlife, Water sports, Portuguese architecture",
+                imageClass: "goa"
+            },
+            "Leh-Ladakh": {
+                description: "Ladakh is a region administered by India as a union territory and constitutes a part of the larger Kashmir region. Ladakh is known for its remote mountain beauty, Buddhist culture, and adventurous terrain.",
+                bestTime: "June to September",
+                famousFor: "Monasteries, High mountain passes, Pangong Lake, Magnetic Hill",
+                imageClass: "ladakh"
+            },
+            "Varanasi": {
+                description: "Varanasi, also known as Benares or Kashi, is one of the oldest continuously inhabited cities in the world. Situated on the banks of the Ganges River, it's considered the spiritual capital of India.",
+                bestTime: "October to March",
+                famousFor: "Ghats, Evening Ganga Aarti, Spirituality, Ancient temples",
+                imageClass: "varanasi"
+            },
+            "Jaipur": {
+                description: "Jaipur is the capital of India's Rajasthan state. It's known as the 'Pink City' due to the distinctive color of its buildings. The city was founded in 1727 by Maharaja Sawai Jai Singh II, the ruler of Amber.",
+                bestTime: "October to March",
+                famousFor: "Hawa Mahal, City Palace, Amber Fort, Craft markets",
+                imageClass: "jaipur"
+            },
+            "Darjeeling": {
+                description: "Darjeeling is a town in India's West Bengal state, in the Himalayan foothills. Once a summer resort for the British Raj elite, it remains the terminus of the narrow-gauge Darjeeling Himalayan Railway, completed in 1881.",
+                bestTime: "March to May, September to November",
+                famousFor: "Tea plantations, Toy Train, Tiger Hill sunrise, Kanchenjunga views",
+                imageClass: "darjeeling"
+            },
+            "Andaman Islands": {
+                description: "The Andaman Islands are an Indian archipelago in the Bay of Bengal. These roughly 300 islands are known for their palm-lined, white-sand beaches, mangroves and tropical rainforests.",
+                bestTime: "November to May",
+                famousFor: "Radhanagar Beach, Scuba diving, Cellular Jail, Marine life",
+                imageClass: "andaman"
+            },
+            "Rishikesh": {
+                description: "Rishikesh is a city in India's northern state of Uttarakhand, in the Himalayan foothills beside the Ganges River. The river is considered holy, and the city is renowned as a center for studying yoga and meditation.",
+                bestTime: "September to November, February to March",
+                famousFor: "Yoga, River rafting, Beatles Ashram, Laxman Jhula",
+                imageClass: "rishikesh"
+            }
+        };
+        
+        detailBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const card = btn.closest('.card');
+                const title = card.querySelector('h3').textContent;
+                const details = destinationDetails[title];
+                
+                modalTitle.textContent = title;
+                modalDesc.textContent = details.description;
+                modalBestTime.textContent = details.bestTime;
+                modalFamousFor.textContent = details.famousFor;
+                modalImage.className = "modal-image " + details.imageClass;
+                
+                modal.style.display = 'flex';
+            });
+        });
+        
+        closeModal.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+        
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+        
+        // Form Submission
+        const contactForm = document.getElementById('contact-form');
+        
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const destination = document.getElementById('destination').value;
+            const message = document.getElementById('message').value;
+            
+            // In a real implementation, you would send this data to a server
+            alert(`Thank you, ${name}! Your inquiry about ${destination} has been received. We'll contact you at ${email} soon.`);
+            
+            contactForm.reset();
+        });
+
+        // Smooth Scrolling for Navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 70,
+                    behavior: 'smooth'
+                });
+                
+                // Close mobile menu if open
+                navLinks.classList.remove('active');
+                hamburger.classList.remove('active');
+            });
+        });
+        
+        // Change active navigation link on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            let currentSection = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= (sectionTop - 100)) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
